@@ -1,7 +1,6 @@
 package com.jumiatest.categorizephonenumber.repository;
 
 import com.jumiatest.categorizephonenumber.domain.Customer;
-import com.jumiatest.categorizephonenumber.domain.CustomerDetail;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
