@@ -1,0 +1,81 @@
+<h1>List of Customers</h1>
+
+<div class="container">
+    <form novalidate #form="ngForm">
+        <div class="form-group">
+            <strong>State</strong>
+            <select class="form-control" name="state" [(ngModel)]="state">
+                <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+            </select>
+
+            <strong>Country</strong>
+            <select class="form-control" name="country" [(ngModel)]="country">
+                <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+            </select>
+
+            <div class="form-button">
+                <button class="btn btn-primary" type="submit" (click)="retrieveByCountryAndStateCheck(country,state)"
+                    *ngIf="country!==null&&state!==null">Filter</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>number</th>
+                        <th>Country_Code</th>
+                        <th>
+                            <div class="dropdown">
+                                <button class="dropbtn">Country_Name</button>
+                                <div class="dropdown-content">
+                                    <a role="button" (click)="retrieveAllCustomers()">All</a>
+                                    <a role="button" (click)="retrieveByCountry('MOROCCO')">MOROCCO</a>
+                                    <a role="button" (click)="retrieveByCountry('MOZAMBIQUE')">MOZAMBIQUE</a>
+                                    <a role="button" (click)="retrieveByCountry('UGANDA')">UGANDA</a>
+                                    <a role="button" (click)="retrieveByCountry('ETHIOPIA')">ETHIOPIA</a>
+                                    <a role="button" (click)="retrieveByCountry('CAMEROON')">CAMEROON</a>
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="dropdown">
+                                <button class="dropbtn">State</button>
+                                <div class="dropdown-content">
+                                    <a role="button" (click)="retrieveByState('VALID')">VALID</a>
+                                    <a role="button" (click)="retrieveByState('NOT_VALID')">NOT_VALID</a>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor='let customer of customers'>
+                        <td>{{customer.name}}</td>
+                        <td>{{customer.number}}</td>
+                        <td>{{customer.countryCode}}</td>
+                        <td>{{customer.countryName}}</td>
+                        <td>{{customer.state}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- <div class="container">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a (click)="previousClick()" class="page-link">Previous</a></li>
+                        <li *ngFor='let index of pageIndexes' class="page-item" [ngClass]="active(index)">
+                            <a (click)="getPaginationWithIndex(index)" class="page-link">
+                                {{index + 1}}
+                            </a>
+                        </li>
+                        <li class="page-item"><a (click)="nextClick()" class="page-link">Next</a></li>
+                    </ul>
+                </nav>
+            </div> -->
+        </div>
+
+    </form>
+</div>
